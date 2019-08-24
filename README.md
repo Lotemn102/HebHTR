@@ -154,17 +154,17 @@ Higher number of iterations is suitable for large letters and a lot of spaces be
    <img src="https://user-images.githubusercontent.com/35609587/63641024-3ce9a680-c6b0-11e9-851e-4107ffb524bb.png">
    </p>
    
- For **3** iterations we get the following segmentation:
+ for **3** iterations we get the following segmentation:
   <p align="center">
    <img src="https://user-images.githubusercontent.com/35609587/63641038-6d314500-c6b0-11e9-8d10-8217e9460bcb.png">
    </p>
   
-   Which the model infers as:
+  which the model infers as:
   <p align='center'>
   , כולת להקשום לעצמ נו - סוגיה מעני ות המשתנה עםהזמן
   </p>
   
-  And for **6** iterations we get the following segmentation:
+  and for **6** iterations we get the following segmentation:
   <p align="center">
   <img src="https://user-images.githubusercontent.com/35609587/63641044-9520a880-c6b0-11e9-9dc6-9c078357c977.png">
   </p>
@@ -184,7 +184,7 @@ For example:
 <img src="https://user-images.githubusercontent.com/35609587/63641150-293f3f80-c6b2-11e9-9586-d46a5cd8a13c.png">
 </p>
 
-Without using any of the removing options, we get complete gibberish:
+without using any of the removing options, we get complete gibberish:
 <p align='center'>
   4- א- תמ" - מו, רח או- ין אות הלחמה הברים+ מידווסט יות באלו ברוחם נ: ורם מוטי אות, מוטין, אל ליוי יורטי ודורי ידי מ- יוש: מלי. 
 - ימש, - ואירופאים - צרפת - וסוריה ניתנה לצרפת. השושלת ההאשמית רצתה את השליטה בסוריה - בשם הלאום הערבי.
