@@ -67,7 +67,7 @@ I've created a dataset of around 100,000 Hebrew words. Around 50,000 of them are
 Segementation of those words was done using one of my previous works which can be found [here](https://github.com/Lotemn102/TIS).\
 This data was cleaned and labeled manually by me. The other 50,000 words were made artificially also by me. The word list for
 creating the artificial words is taken from MILA's Hebrew stopwords lexicon [3].
-Over all, the whole dataset contains 25 different handwritten fonts.
+Over all, the whole dataset contains 25 different handwrites.
 The dataset also contains digits and punctuation characters.
 
 All words in the dataset have the size of 128×32, and were encoded into black and white (binary). \
