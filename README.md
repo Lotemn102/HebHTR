@@ -202,7 +202,7 @@ If none of the above helps, i suggest you try to do the word segmentation with a
 and then infer each word with the model.
 
  
-## Requierments
+## Requirements
   - TensorFlow 1.12.0 
   - Numpy 16.4 (will work on 17.0 as well)
   - OpenCV
