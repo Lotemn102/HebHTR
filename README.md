@@ -168,7 +168,7 @@ Higher number of iterations is suitable for large letters and a lot of spaces be
   <p align="center">
   <img src="https://user-images.githubusercontent.com/35609587/63641044-9520a880-c6b0-11e9-9dc6-9c078357c977.png">
   </p>
-  Which the model infers as:
+  which the model infers as:
   <p align='center'>
   היכולת להקשיב לעמנו - סוגיה מעניינת המשתנה עם הזמן
   </p>
