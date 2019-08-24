@@ -111,8 +111,23 @@ Converts a text-based image to text.
 **Returns**
   - Text decoded by the model from the image (string).  
 
+**Example of usage in this function:**
+```python 
+from HebHTR import *
 
-*Example of usage of this function was given at "Quick Start" section.*
+# Create new HebHTR object.
+img = HebHTR('example.png')
+
+# Infer words from image.
+text = img.imgToWords(iterations=5, decoder_type='word_beam', remove_vertical_lines=False,
+                        remove_horziontal_lines=False)
+```
+
+Result:
+
+<p align="center">
+  <img width="80%" height="80%" src="https://user-images.githubusercontent.com/35609587/63640910-73262680-c6ae-11e9-936c-2f08c592def0.png">
+</p>
 
 ---------
 
