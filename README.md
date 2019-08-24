@@ -198,7 +198,7 @@ Without using any of the removing options, we get complete gibberish:
  
  ----
 
-If none of the above helps, i suggest you try to segment the text to single words with another algorithm which fits to your data,
+If none of the above helps, i suggest you try to do the word segmentation with another algorithm which fits to your data,
 and then infer each word with the model.
 
  
