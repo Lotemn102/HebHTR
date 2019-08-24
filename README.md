@@ -85,7 +85,7 @@ The corpus was created by me using the MILA's Arutz 7 corpus [4], TheMarker corp
 ### imgToWords
 ```python
 imgToWords(remove_horziontal_lines=False, remove_vertical_lines=False, iterations=5,
-                    decoder_type='best_path')
+                    decoder_type='word_beam')
 ```
 
 Converts a text-based image to text. 
@@ -109,7 +109,11 @@ Converts a text-based image to text.
      
      
 **Returns**
-  - Text decoded by the model from the image (string).
+  - Text decoded by the model from the image (string).  
+
+
+*Example of usage of this function was given at "Quick Start" section.*
+
 ---------
 
 
@@ -139,6 +143,23 @@ This function draws rectangles around the words in the text. With this function,
        
  **Returns**
   - None. Saves the image in the output path. 
+  
+ 
+ **Example of usage in this function:**
+ ```python 
+from HebHTR import *
+
+# Create new HebHTR object.
+img = HebHTR('example.png')
+
+# Draw rectangles around words segmetation.
+img.drawRectangles(iterations=5, output_path='rect.png', remove_vertical_lines=False, 
+                   remove_horziontal_lines=False)
+```
+Result:
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/35609587/63641622-f4cf8180-c6b9-11e9-91a6-4892437e5c3d.png">
+</p>
   
   
 ## Improve Accuracy
