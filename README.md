@@ -45,21 +45,20 @@ Word segmentation is based on one of my previous works which can be found [here]
 As mentioned, this model was written by Harald Scheidl. This model was trained to decode text from images with a single word.
 I've trained the model on a Hebrew words dataset. The accuracy level of this model is 88%, with a character error rate around 4%.
 
-The model receives input image of the shape 128*32, binary colored. It has 5 CNN layers, 2 RNN layers, and eventually words are being decoded with
+The model receives input image of the shape 128×32, binary colored. It has 5 CNN layers, 2 RNN layers, and eventually words are being decoded with
 a CTC-WordBeam algoritm. 
 
 ![2](https://user-images.githubusercontent.com/35609587/63640070-b11e4d00-c6a4-11e9-9034-06da6fb3d42e.png)
 
 Explanation in much more details can be found in Harald's article [1].
 
-All words prediced by this model should be fit it's input data, i.e binary colored images of size 128*32. Therefore, each image
-is normalized to binary color. Then, it is resized (without distortion) until it either has a width of 128 or a height of 32.
-Finally, it is copied into a (white) target image of size 128×32. 
+All words prediced by this model should fit it's input data, i.e binary colored images of size 128*32. Therefore, HebHTR
+normalizes each image to binary color. Then, HebHTR resizes it (without distortion) until it either has a width of 128 or a height of 32. Finally, image is copied into a (white) target image of size 128×32. 
 
 The following figure demonstrates this process:
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/35609587/63640655-72d85c00-c6ab-11e9-83a2-1837adda9546.png">
+  <img src="https://user-images.githubusercontent.com/35609587/63646959-49f3ad80-c723-11e9-9c81-e41e2c8f5af7.png">
 </p>
 
 ## About the Dataset
@@ -67,10 +66,10 @@ I've created a dataset of around 100,000 Hebrew words. Around 50,000 of them are
 Segementation of those words was done using one of my previous works which can be found [here](https://github.com/Lotemn102/TIS).\
 This data was cleaned and labeled manually by me. The other 50,000 words were made artificially also by me. The word list for
 creating the artificial words is taken from MILA's Hebrew stopwords lexicon [3].
-Over all, the whole dataset contains 25 different handwrites.
+Overall, the whole dataset contains 25 different handwrites.
 The dataset also contains digits and punctuation characters.
 
-All words in the dataset have the size of 128×32, and were encoded into black and white (binary). \
+All words in the dataset are of size 128×32, and were encoded into black and white (binary). \
 For example:
 
 <p align="center">
@@ -78,8 +77,8 @@ For example:
 </p>
 
 ## About the Corpus
-The corpus which is being used in the Word Beam contains of around 500,000 unique Hebrew words.
-The corpus was created by me using the MILA's Arutz 7 corpus [4], TheMarker corpus [5], HaKnesset corpus [6].
+The corpus which is being used in the Word Beam contains around 500,000 unique Hebrew words.
+The corpus was created by me using the MILA's Arutz 7 corpus [4], TheMarker corpus [5] and HaKnesset corpus [6].
 
 ## Avaliable Functions
 ### imgToWords
@@ -99,7 +98,7 @@ Converts a text-based image to text.
      Default value is set to 'False'.
 
   - **iterations** (int): Number of dilation iterations that will be done on the image. Image is dilated to find
-    the contours of it's words. efault value is set to 5.
+    the contours of it's words. Default value is set to 5.
     
   - **decoder_type** (string): Which decoder to use when infering a word. There are two decoding options:
      -  'word_beam' - CTC word beam algorithm.
@@ -151,7 +150,7 @@ This function draws rectangles around the words in the text. With this function,
      Default value is set to 'False'.
      
   - **iterations** (int): Number of dilation iterations that will be done on the image. Image is dilated to find
-    the contours of it's words. efault value is set to 5.
+    the contours of it's words. Default value is set to 5.
     
   - **dilate** (bool): Whether to dilate the text in the image or not. Default is set to 'True'.
        It is recommended to dilate the image for better segmentation.
@@ -183,8 +182,8 @@ I suggest two ways to improve it:
 
 **1. Change number of iterations**. \
 Higher number of iterations is suitable for large letters and a lot of spaces between words, while
-   lower number of iterations is siutable for smaller handwrite. Use the **drawRectangles** function to see how the number of
-   iterations affects HebHTR segmentation of your text.
+   lower number of iterations is suitable for smaller handwrite. Use the **drawRectangles** function to see how the number of
+   iterations affects HebHTR segmentation of your text.\
    I will use the following sentence as an example:
    <p align="center">
    <img src="https://user-images.githubusercontent.com/35609587/63641024-3ce9a680-c6b0-11e9-851e-4107ffb524bb.png">
@@ -221,15 +220,15 @@ For example:
 </p>
 
 without using any of the removing options, we get complete gibberish:
-<p align='center'>
+<p align='center' dir='rtl'>
   4- א- תמ" - מו, רח או- ין אות הלחמה הברים+ מידווסט יות באלו ברוחם נ: ורם מוטי אות, מוטין, אל ליוי יורטי ודורי ידי מ- יוש: מלי. 
 - ימש, - ואירופאים - צרפת - וסוריה ניתנה לצרפת. השושלת ההאשמית רצתה את השליטה בסוריה - בשם הלאום הערבי.
  </p>
  
  
  but when we use both of the removing options, we get:
- <p align='center'>
-  והם כבשו את דמשק, אך לאחר המלחמה הבריטים העדיפו את בעלי בריתם האירופאים - צרפת - וסוריה ניתנה לצרפת. (השושלת ההאשמית רצתה את השליטה בסוריה - בשם הלאום הערבי.
+ <p align='center' dir='rtl'>
+  הם כבשו את דמשק, אך לאחר המלחמה הבריטים העדיפו את בעלי בריתם האירופאים - צרפת - וסוריה ניתנה לצרפת. (השושלת ההאשמית רצתה את השליטה בסוריה - בשם הלאום הערבי.
  </p>
  
  ----
