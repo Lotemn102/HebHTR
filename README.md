@@ -69,7 +69,7 @@ creating the artificial words is taken from MILA's Hebrew stopwords lexicon [3].
 Overall, the whole dataset contains 25 different handwrites.
 The dataset also contains digits and punctuation characters.
 
-All words in the dataset are of size 128×32, and were encoded into black and white (binary). \
+All words in the dataset were encoded into black and white (binary). \
 For example:
 
 <p align="center">
