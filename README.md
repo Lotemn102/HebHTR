@@ -1,6 +1,6 @@
 # Hebrew Handwritten Text Recognizer (OCR)
 Hebrew Handwritten Text Recognizer, based on Machine Learning. Implemented with TensorFlow and OpenCV.\
-Model is based on [Harald Scheidl](https://github.com/githubharald) SimpleHTR model [1], and CTC-WordBeam algoritm [2].
+Model is based on [Harald Scheidl](https://github.com/githubharald)'s SimpleHTR model [1], and CTC-WordBeam algoritm [2].
 
 <p align="center">
   <img width="40%" height="40%" src="https://user-images.githubusercontent.com/35609587/63640817-9f8d7300-c6ad-11e9-8f0d-56402f0fcf2d.png">
