@@ -13,7 +13,7 @@ Currently HebHTR is only supported on Linux. I've tested it on Ubuntu 18.04.
 
 In order to run HebHTR you need to compile Harald Scheidl's CTC-WordBeam.
 In order to do that you need to clone the [CTC-WordBeam](https://github.com/githubharald/CTCWordBeamSearch#usage),
-go to cpp/proj/ directory and run the script ./buildTF.sh
+go to ```cpp/proj/ directory``` and run the script ```./buildTF.sh```.
 
 ### Quick Start
 ```python 
