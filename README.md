@@ -239,7 +239,7 @@ and then infer each word with the model.
  
 ## Requirements
   - TensorFlow 1.12.0 
-  - Numpy 16.4 (will work on 17.0 as well)
+  - Numpy 16.4
   - OpenCV
     
 ## References
