@@ -93,88 +93,57 @@ def findSentencesBoundaries(img, original_img):
 
     (cx, cy), (W, H), ang = ret
 
-    if W > H and h > w:
-        ang = ang + 90
-
-    if H > W and w > h:
-        ang = ang + 90
-
     ## (4) Find rotated matrix, do rotation
     M = cv2.getRotationMatrix2D((cx, cy), ang, 1.0)
     rotated = cv2.warpAffine(threshed, M, (img.shape[1], img.shape[0]))
 
-    ## (5) find and draw the upper and lower boundary of each lines
+    ## (5) find each line
     hist = cv2.reduce(rotated, 1, cv2.REDUCE_AVG).reshape(-1)
-
-    th = 5
     H, W = img.shape[:2]
-    lines = [y for y in range(H - 1) if hist[y] <= th and hist[y + 1] > th]
-
-    if not lines:
-        return [img]
-
-    rotated = cv2.cvtColor(rotated, cv2.COLOR_GRAY2BGR)
 
     # Calculate average distance between every 2 lines, in order to clean very
     # close lines.
     lines_distances = []
     list_lines = []
 
-    for i in range(0, len(lines)):
-        dist = lines[i] - lines[i-1]
+    for i in range(0, len(hist)):
+        dist = hist[i] - hist[i-1]
+        
         if i is 0:
             lines_distances.append(0)
+            
         # Remove very close lines.
         elif dist > 5:
-            list_lines.append(lines[i])
+            list_lines.append(hist[i])
             lines_distances.append(dist)
 
-    final_lines = []
-
     if len(lines_distances) > 1:
-        average_space = sum(lines_distances) / (len(lines_distances)-1)
+        average_space = sum(lines_distances) / len(lines_distances)
     else:
         average_space = sum(lines_distances)
-
-    lines_distances[0] = int(average_space)
-    removed_last_one = False
-    epsilon = 20 # Limit the allowed deviation from the average distance.
-    shift = 15 # Move the lines a little bit down, for better segmentation.
-
-    if not list_lines:
-        return [img]
-
-    img = cv2.cvtColor(original_img, cv2.COLOR_BGR2GRAY)
-    imgray = sharpenText(img)
+    
+    rotated = cv2.cvtColor(rotated, cv2.COLOR_GRAY2BGR)
+    final_lines = []
 
     for i in range(0, len(list_lines)+1):
         # For the first sentence.
         if i is 0:
-            cv2.line(rotated, (0, list_lines[0] - shift), (W, list_lines[0] - shift), (0, 255, 0), 1)
-            cropped = imgray[0:(list_lines[0] - shift), 0:W]
+            cropped = rotated[0:int(average_space), 0:W]
+            
             if (cropped.shape[0] > 0) and (cropped.shape[1] > 0):
                 final_lines.append(cropped)
-
-        elif average_space + epsilon < lines_distances[i] or\
-                average_space - epsilon > lines_distances[i]\
-                and not removed_last_one:
-            removed_last_one = True
         else:
-            cv2.line(rotated, (0, list_lines[i-1] - shift),
-                     (W, list_lines[i-1] - shift), (0, 255, 0), 1)
-            cropped = imgray[(list_lines[i-2] - shift):(list_lines[i-1] - shift), 0:W]
+            cropped = rotated[list_lines[i-2]:list_lines[i-1], 0:W]
 
             if (cropped.shape[0] > 0) and (cropped.shape[1] > 0):
                 final_lines.append(cropped)
-
-            removed_last_one = False
 
     # For the last sentence.
-    cropped = imgray[(list_lines[len(list_lines) - 1] - shift):H, 0:W]
+    cropped = rotated[list_lines[len(list_lines) - 1]:H, 0:W]
+    
     if (cropped.shape[0] > 0) and (cropped.shape[1] > 0):
         final_lines.append(cropped)
-
-    cv2.imwrite("result.png", rotated)
+        
     return final_lines
 
 # Dilate image for better segmentation in contours detection.
