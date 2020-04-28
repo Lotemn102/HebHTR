@@ -17,7 +17,7 @@ class HebHTR:
             clean_h = self.original_img
 
         if remove_vertical_lines:
-            clean_v = removeHorizontalLines(clean_h)
+            clean_v = removeVerticalLines(clean_h)
         else:
             clean_v = clean_h
 
@@ -52,7 +52,7 @@ class HebHTR:
             clean_h = self.original_img
 
         if remove_vertical_lines:
-            clean_v = removeHorizontalLines(clean_h)
+            clean_v = removeVerticalLines(clean_h)
         else:
             clean_v = clean_h
 
