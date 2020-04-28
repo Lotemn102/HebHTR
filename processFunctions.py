@@ -245,30 +245,30 @@ def removeVerticalLines(img):
             cv2.THRESH_BINARY, 15, -2)
 
     # Copy binary image.
-    horizontal = bw.copy()
+    vertical = bw.copy()
 
     # Find structuring element size. 30 is ok for most images i've tested in
     # various size from ~50*100 (a single word) to ~1500*2300 (full page).
-    horiz_size = int(bw.shape[0] / (bw.shape[0]/30))
+    vertical_size = int(bw.shape[0] / (bw.shape[0]/30))
 
     # Create a line structuring element.
-    horizontal_structure = cv2.getStructuringElement(cv2.MORPH_RECT,
-                                                     (horiz_size, 1))
+    vertical_structure = cv2.getStructuringElement(cv2.MORPH_RECT,
+                                                     (1, vertical_size))
 
     # Preform erode function with structuring element in order to find the
     # image lines.
-    horizontal = cv2.erode(src=horizontal, kernel=horizontal_structure,
+    vertical = cv2.erode(src=vertical, kernel=vertical_structure,
                            anchor=(-1, -1))
 
     # Preform dilate function in order to connect some gaps in found lines.
-    horizontal = cv2.dilate(src=horizontal, kernel=horizontal_structure,
+    vertical = cv2.dilate(src=vertical, kernel=vertical_structure,
                             anchor=(-1, -1))
 
     # Inverse the image, so that lines are black for masking.
-    horizontal_inv = cv2.bitwise_not(horizontal)
+    vertical_inv = cv2.bitwise_not(vertical)
 
     # Mask the inverted img with the inverted mask lines.
-    masked_img = cv2.bitwise_and(img_inverse, img_inverse, mask=horizontal_inv)
+    masked_img = cv2.bitwise_and(img_inverse, img_inverse, mask=vertical_inv)
 
     # Reverse the image back to normal.
     masked_img_inv = cv2.bitwise_not(masked_img)
@@ -330,18 +330,3 @@ def removeHorizontalLines(img):
     _, final = cv2.threshold(imgBlur, 0, 255, cv2.THRESH_OTSU)
 
     return final
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
