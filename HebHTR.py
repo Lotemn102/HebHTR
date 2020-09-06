@@ -9,7 +9,7 @@ class HebHTR:
         self.original_img = cv2.imread(img_path)
 
 
-    def imgToWord(self, iterations=5, decoder_type='best_path'):
+    def imgToWord(self, iterations=5, decoder_type='word_beam'):
         transcribed_words = []
         model = getModel(decoder_type=decoder_type)
         transcribed_words.extend(predictWord(self.original_img, model))
