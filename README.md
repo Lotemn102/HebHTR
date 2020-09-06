@@ -119,41 +119,6 @@ Result:
 </p>
 
 ---------
-
-## Improve Accuracy
-Model's accuracy is around 88%, but because of the word segmentation, for large texts accuracy might be much lower.\
-For improving it, try to change number of iterations.
-Higher number of iterations is suitable for large letters and a lot of spaces between words, while
-lower number of iterations is suitable for smaller handwrite. 
-I will use the following sentence as an example:
-   <p align="center">
-   <img src="https://user-images.githubusercontent.com/35609587/63641024-3ce9a680-c6b0-11e9-851e-4107ffb524bb.png">
-   </p>
-   
- for **3** iterations we get the following segmentation:
-  <p align="center">
-   <img src="https://user-images.githubusercontent.com/35609587/63641038-6d314500-c6b0-11e9-8d10-8217e9460bcb.png">
-   </p>
-  
-  which the model infers as:
-  <p align='center'>
-  , כולת להקשום לעצמ נו - סוגיה מעני ות המשתנה עםהזמן
-  </p>
-  
-  and for **6** iterations we get the following segmentation:
-  <p align="center">
-  <img src="https://user-images.githubusercontent.com/35609587/63641044-9520a880-c6b0-11e9-9dc6-9c078357c977.png">
-  </p>
-  which the model infers as:
-  <p align='center'>
-  היכולת להקשיב לעמנו - סוגיה מעניינת המשתנה עם הזמן
-  </p>
-  
-------
-
-If none of the above helps, i suggest you try to do the word segmentation with another algorithm which fits to your data,
-and then infer each word with the model.
-
  
 ## Requirements
   - TensorFlow 1.12.0 
