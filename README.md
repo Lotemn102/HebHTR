@@ -32,14 +32,6 @@ Result:
   <img width="80%" height="80%" src="https://user-images.githubusercontent.com/35609587/63640910-73262680-c6ae-11e9-936c-2f08c592def0.png">
 </p>
 
-## How This Works
-HebHTR first detects the sentences in the text-based image. Then, for each sentence, it crops all the words in the sentence,
-and passes each word to the model to decode the text written in it.
-
-![1](https://user-images.githubusercontent.com/35609587/63639606-0acf4900-c69e-11e9-96e0-f66200d73993.png)
-
-Word segmentation is based on one of my previous works which can be found [here](https://github.com/Lotemn102/TIS).
-
 ## About the Model
 As mentioned, this model was written by Harald Scheidl. This model was trained to decode text from images with a single word.
 I've trained the model on a Hebrew words dataset. The accuracy level of this model is 88%, with a character error rate around 4%.
