@@ -74,19 +74,12 @@ The corpus was created by me using the MILA's Arutz 7 corpus [4], TheMarker corp
 ## Avaliable Functions
 ### imgToWords
 ```python
-imgToWords(remove_horziontal_lines=False, remove_vertical_lines=False, iterations=5,
-                    decoder_type='word_beam')
+imgToWords(iterations=5, decoder_type='word_beam')
 ```
 
 Converts a text-based image to text. 
 
 **Parameters:**
-
-  - **remove_horziontal_lines** (bool): Whether to remove horizontal lines from the text or not.
-     Default value is set to 'False'.
-      
-  - **remove_vertical_lines** (bool): Whether to remove vertical lines from the text or not.
-     Default value is set to 'False'.
 
   - **iterations** (int): Number of dilation iterations that will be done on the image. Image is dilated to find
     the contours of it's words. Default value is set to 5.
