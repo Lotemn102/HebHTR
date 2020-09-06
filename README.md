@@ -23,8 +23,7 @@ from HebHTR import *
 img = HebHTR('example.png')
 
 # Infer words from image.
-text = img.imgToWords(iterations=5, decoder_type='word_beam', remove_vertical_lines=False,
-                        remove_horziontal_lines=False)
+text = img.imgToWord(iterations=5, decoder_type='word_beam')
 ```
 
 Result:
