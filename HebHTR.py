@@ -13,5 +13,4 @@ class HebHTR:
         transcribed_words = []
         model = getModel(decoder_type=decoder_type)
         transcribed_words.extend(predictWord(self.original_img, model))
-        final = wordListToString(transcribed_words)
-        return final
+        return transcribed_words
