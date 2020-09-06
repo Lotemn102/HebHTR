@@ -109,8 +109,7 @@ from HebHTR import *
 img = HebHTR('example.png')
 
 # Infer words from image.
-text = img.imgToWords(iterations=5, decoder_type='word_beam', remove_vertical_lines=False,
-                        remove_horziontal_lines=False)
+text = img.imgToWord(iterations=5, decoder_type='word_beam')
 ```
 
 Result:
@@ -121,61 +120,12 @@ Result:
 
 ---------
 
-
-### drawRectangles
-```python
-drawRectangles(output_path=None, remove_horziontal_lines=False, remove_vertical_lines=False,
-                        iterations=5, dilate=True)
-```
-This function draws rectangles around the words in the text. With this function, you can see how 'remove_horizontal_lines',
-'remove_vertical_lines' and  'iterations' variables affect the HebHTR segmentation performance.
-
-**Parameters:**
-  - **output_path** (string): A path to save the image to.
-       If None is given as a parameter, image will be saved in the original image parent directory.
-       
-  - **remove_horziontal_lines** (bool): Whether to remove horizontal lines from the text or not.
-     Default value is set to 'False'.
-      
-  - **remove_vertical_lines** (bool): Whether to remove vertical lines from the text or not.
-     Default value is set to 'False'.
-     
-  - **iterations** (int): Number of dilation iterations that will be done on the image. Image is dilated to find
-    the contours of it's words. Default value is set to 5.
-    
-  - **dilate** (bool): Whether to dilate the text in the image or not. Default is set to 'True'.
-       It is recommended to dilate the image for better segmentation.
-       
- **Returns**
-  - None. Saves the image in the output path. 
-  
- 
- **Example of usage in this function:**
- ```python 
-from HebHTR import *
-
-# Create new HebHTR object.
-img = HebHTR('example.png')
-
-# Draw rectangles around words segmetation.
-img.drawRectangles(iterations=5, output_path='rect.png', remove_vertical_lines=False, 
-                   remove_horziontal_lines=False)
-```
-Result:
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/35609587/63641622-f4cf8180-c6b9-11e9-91a6-4892437e5c3d.png">
-</p>
-  
-  
 ## Improve Accuracy
 Model's accuracy is around 88%, but because of the word segmentation, for large texts accuracy might be much lower.\
-I suggest two ways to improve it:
-
-**1. Change number of iterations**. \
+For improving it, try to change number of iterations.
 Higher number of iterations is suitable for large letters and a lot of spaces between words, while
-   lower number of iterations is suitable for smaller handwrite. Use the **drawRectangles** function to see how the number of
-   iterations affects HebHTR segmentation of your text.\
-   I will use the following sentence as an example:
+lower number of iterations is suitable for smaller handwrite. 
+I will use the following sentence as an example:
    <p align="center">
    <img src="https://user-images.githubusercontent.com/35609587/63641024-3ce9a680-c6b0-11e9-851e-4107ffb524bb.png">
    </p>
@@ -200,29 +150,6 @@ Higher number of iterations is suitable for large letters and a lot of spaces be
   </p>
   
 ------
-
-**2. Remove horizontal and/or vertical lines.** \
-Removing those lines might improve sentences segmentation, and thus improve model's infering accuracy.
-
-For example:
-
-<p align="center">
-<img src="https://user-images.githubusercontent.com/35609587/63641150-293f3f80-c6b2-11e9-9586-d46a5cd8a13c.png">
-</p>
-
-without using any of the removing options, we get complete gibberish:
-<p align='center' dir='rtl'>
-  4- א- תמ" - מו, רח או- ין אות הלחמה הברים+ מידווסט יות באלו ברוחם נ: ורם מוטי אות, מוטין, אל ליוי יורטי ודורי ידי מ- יוש: מלי. 
-- ימש, - ואירופאים - צרפת - וסוריה ניתנה לצרפת. השושלת ההאשמית רצתה את השליטה בסוריה - בשם הלאום הערבי.
- </p>
- 
- 
- but when we use both of the removing options, we get:
- <p align='center' dir='rtl'>
-  הם כבשו את דמשק, אך לאחר המלחמה הבריטים העדיפו את בעלי בריתם האירופאים - צרפת - וסוריה ניתנה לצרפת. (השושלת ההאשמית רצתה את השליטה בסוריה - בשם הלאום הערבי.
- </p>
- 
- ----
 
 If none of the above helps, i suggest you try to do the word segmentation with another algorithm which fits to your data,
 and then infer each word with the model.
