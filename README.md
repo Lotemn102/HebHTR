@@ -34,7 +34,7 @@ Result:
 
 ## About the Model
 As mentioned, this model was written by Harald Scheidl. This model was trained to decode text from images with a single word.
-I've trained the model on a Hebrew words dataset. The accuracy level of this model is 88%, with a character error rate around 4%.
+I've trained the model on a Hebrew words dataset.
 
 The model receives input image of the shape 128×32, binary colored. It has 5 CNN layers, 2 RNN layers, and eventually words are being decoded with
 a CTC-WordBeam algoritm. 
