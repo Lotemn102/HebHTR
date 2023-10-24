@@ -1,5 +1,9 @@
 import numpy as np
-import tensorflow as tf
+#import tensorflow as tf
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
+tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)  # Only show errors
+
 
 '''
 Handwritten text recognition model written by Harald Scheidl:
@@ -80,11 +84,11 @@ class Model:
         # basic cells which is used to build RNN
         numHidden = 256
         cells = [
-            tf.contrib.rnn.LSTMCell(num_units=numHidden, state_is_tuple=True)
+            tf.compat.v1.nn.rnn_cell.LSTMCell(num_units=numHidden, state_is_tuple=True)
             for _ in range(2)]  # 2 layers
 
         # stack basic cells
-        stacked = tf.contrib.rnn.MultiRNNCell(cells, state_is_tuple=True)
+        stacked = tf.compat.v1.nn.rnn_cell.MultiRNNCell(cells, state_is_tuple=True)
 
         # bidirectional RNN
         # BxTxF -> BxTx2H
@@ -156,7 +160,7 @@ class Model:
                 wordChars.encode('utf8'))
 
     def setupTF(self):
-        sess = tf.Session()  # TF session
+        sess = tf.compat.v1.Session()  # TF session
 
         saver = tf.train.Saver(max_to_keep=1)  # saver saves model to file
         modelDir = 'model/'
